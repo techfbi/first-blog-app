@@ -1,0 +1,9 @@
+# Node modules and environment
+node_modules/
+.env
+
+# User uploads
+public/uploads/
+
+# Logs
+*.log

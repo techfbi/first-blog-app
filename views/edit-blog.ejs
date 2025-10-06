@@ -1,0 +1,83 @@
+</div>
+<%- include("partials/header") %>
+<div class= "create-cont">
+    <h1>Create new Blog </h1>
+    <form action="/edit/<%= post.id %>" method="POST" enctype="multipart/form-data" > 
+        <!-- enctype="multipart/form-data" is necessary for file uploads -->
+        <label for="full-name">Full Name</label>
+        <input type="text" id="author-name" name="author-name" value="<%= post.author %>" required>
+        <label for="heading">Heading</label>
+        <input type="text" id="heading" name="heading" value="<%= post.blogHeading %>" required>
+
+        <label for="sub-heading">Sub-heading</label>
+        <input type="text" id="sub-heading" name="sub-heading" value="<%= post.blogSubHead %>" required>
+
+        <label for="body">Body</label>
+        <textarea type="text" id="body" name="body" required><%= post.blogBody %></textarea>
+
+        <!-- Render existing extra paragraphs -->
+        <% if (post.extraBodies && post.extraBodies.length > 0) { %>
+            <% post.extraBodies.forEach((paragraph, index) => { %>
+                <div class="new-pgs" id="pg<%= index+2 %>">
+                    <div><label class= "added-label" for="body">Paragraph <%= index+2 %></label></div>
+                    <div><button type="button" class="x">X</button></div>
+                    <textarea id="body" name="body<%= index+2 %>" required><%= paragraph %></textarea><!--the value of the text area is filled with existing-->
+                </div>
+            <% }) %>
+        <% } %>
+
+        <P class="pg"><i>To add more paragraph, click the button below</i></P>
+        <button type="button" class="add-btn">Add</button>
+
+        <label for="image">Update Blog Image:</label>
+        <input type="file" id="image" name="image" accept="image/*">        
+
+        <input type="submit" value="Save Changes" class="post-btn">
+
+        <script>
+            // Function to renumber all paragraphs
+            function renumberParagraphs() {
+                $(".new-pgs").each(function(index) {
+                    let num = index + 2; // start from 2
+                    $(this).find("label").text("Paragraph " + num); //add text to the label tag
+                    $(this).find("textarea").attr("placeholder", "Input Paragraph " + num); // add value to the attr; placeholder
+                    $(this).find("div").attr("id", "pg" + num); // add value to the attr; id
+                    $(this).find("textarea").attr("name", "body" + num); // add value to the attr; name
+
+                });
+            }
+
+             // Adds new paragraph when the add button is clicked
+            $(".add-btn").on("click", function () {
+                let count = $(".new-pgs").length;
+
+                if (count >= 9) { // limit to 10 paragraphs
+                    alert("You can only add up to 10 paragraphs!");
+                    return; // stop execution
+                }
+                var newParagraph = `
+                    <div class = "new-pgs" id="mypg">
+                        <div><label class= "added-label" for="body"> </label></div>
+                        <div><button type = "button" class ="x">X</button></div>
+                        <textarea type="text" id="body" name="body" placeholder="Input your Paragraph" required></textarea>
+                        
+                    </div>
+                    `; 
+                $(".pg").before(newParagraph);
+                renumberParagraphs();
+            });
+
+            // Remove paragraph when "X" is clicked
+            $(document).on("click", ".x", function () {
+                $(this).closest(".new-pgs").remove(); //moves up the DOM from the button until it finds the nearest parent element with the class "new-pgs" and deletes it
+                renumberParagraphs();
+            });
+            
+       </script>
+    </form>
+</div>
+
+<button class="logout-btn" type="button" onclick="window.location.href='/logout'">Logout</button>
+
+
+<%- include("partials/footer") %>

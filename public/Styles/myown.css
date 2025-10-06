@@ -1,0 +1,509 @@
+body {
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+    overflow-x: hidden; /* Disables horizontal scrolling */
+    /* box-sizing: border-box; /* Ensures consistent box sizing */
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    /*The styles below will make the footer stick to the bottom of the page*/
+    /*alongside the <main> tag that is styled flex:1*/
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+@media (max-width: 480px) {
+    * {
+        font-size: 0.9rem; /* Scales down font size for better readability on small screens */
+    }
+    h1 {
+        font-size: 1.5rem; /* Adjust heading size */
+    }
+}
+
+main {
+    flex: 1; /* Main content grows to push footer down */
+    max-width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box; /* Ensures padding is included in width */
+}
+input, textarea, button {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+
+
+/*The styles below are for header*/
+
+.container {
+    padding: 20px 10%; /*padding top and bottom 15px, left and right 10%*/
+    background-color: rgb(25, 24, 24);
+}
+
+.headers {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* spreads logo, nav, and search */
+    gap: 10px;
+}
+
+.left-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    height: 50px;
+}
+
+.head {
+    display: flex;
+    gap: 20px;
+}
+
+.head div a {
+  color: #ccc;  /* default dimmed */
+  text-decoration: none;
+  transition: color 0.3s, font-weight 0.3s;
+}
+
+.head div a:hover {
+  color: white;  /* brighter on hover */
+}
+
+.head div a.active {
+  color: #ffcc00;     /* highlight color */
+  font-weight: bold;
+}
+
+.search-form {
+    width: 100%;
+    max-width: 300px; /* stays small on desktop */
+}
+.search-form input[type="search"] { /*This is to style the form itself*/
+    padding: 8px 12px; /*for the space inside*/
+    border-radius: 11px;
+    transition: 0.3s ease;
+    outline: none; /*This will remove the blue border that shows when clicked*/
+    width: 100%;
+    border: none;
+}
+.search-form input[type="search"]:focus { /*This is for when it is clicked */
+    border-color: white; /*Highlight border when typing*/
+    box-shadow: 0 0 5px white; /* The glow effect*/
+}
+
+@media (max-width: 1200px) {
+    .logo {
+        height: 40px;
+    }
+    .headers {
+        font-size: 0.8rem;
+    }
+    .search-form input[type="search"] { 
+    padding: 6px 40px;
+    }
+
+}
+@media (max-width: 768px) {
+    .headers {
+        align-items: flex-start; /* left-align logo + nav */
+    }
+    .head {
+        gap: 10px;
+        justify-content: center;
+    }
+    .search-form {
+        margin-top: 10px;
+        max-width: 200px;
+        align-self: flex-end; /* keep it at the right */
+    }
+    .container {
+        padding: 20px 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .headers {
+        flex-direction: column;
+        align-items: center;
+    }
+    .head {
+        align-items: center;
+    }
+    .search-form {
+        align-items: center;
+        max-width: 100%;
+    }
+    .left-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+
+
+
+/*The styqle below is for the footer*/
+
+footer {
+    color: white;
+    background-color: black;
+    text-align: center;
+    padding: 20px;
+}
+
+
+
+/*The styles below are for the login form page coupled with some of create ejs*/
+
+.login-container, .create-cont {
+    margin: 30px auto; /* Centered with auto left/right margins and 30px top/bottom */
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+.wrong {
+    color: red;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    margin: 10px;
+}
+.google-btn {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+
+}
+.google-btn:hover {
+    background: #f0f0f0;
+}
+
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px;
+    color: #9b9b9b;
+    font-size: 13px;
+}
+.divider::before, .divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+}
+.divider:not(:empty)::before {
+    margin-right: .75em;
+}
+.divider:not(:empty)::after {
+    margin-left: .75em;
+}
+
+#email, #password, #heading, #sub-heading, #body, #author-name {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 15px;
+    border:1px solid #ddd;
+    transition: 0.3 ease;
+}
+
+label {
+    display: block;
+}
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
+.login-btn, .post-btn {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    background-color: #ffc107;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.3rem;
+    padding: 20px;
+    border: none;
+    transition: background 0.3s;
+}
+.login-btn:hover, .post-btn:hover {
+    background: #d4ae3a;
+}
+.register {
+    text-align: center;
+    font-size: 15px;
+}
+.register a {
+    font-weight: bold;
+}
+.register a:hover {
+    text-decoration: underline;
+}
+@media (min-width: 1200px) {
+    .login-container, .create-cont {
+        max-width: 700px;
+        font-size: 1.2rem;
+        padding: 40px;
+        margin: 50px auto;
+    }
+}
+@media (max-width: 480px) {
+    .login-container, .create-cont {
+        padding: 20px;
+        margin: 20px auto; /* Centered with auto left/right margins */
+    }
+}
+
+
+
+
+/* Style for create ejs*/
+
+#body {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 15px;
+    border:1px solid #ddd;
+    transition: 0.3 ease;
+    height: 100px;
+    outline: none; /*This will remove the blue border that shows when clicked*/
+
+}
+
+.new-pgs {
+  display: flex;
+  justify-content: space-between; /* spacing between boxes */
+  flex-wrap: wrap;
+}
+.x {
+    background-color: rgb(148, 5, 5);
+    border: none;
+    padding: 5px;
+    width: 50px;
+    border-radius: 15px;
+    color: white;
+}
+.x:hover {
+    background-color: rgb(209, 19, 19);
+    transition: 0.5s ease;
+}
+.add-btn {
+    margin-top: -5px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: rgb(25, 24, 24);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 70px;
+}
+.add-btn:hover {
+    transition: 0.3s ease;
+    background-color: rgb(44, 39, 39);
+    font-size: 1.1rem;
+
+}
+.pg {
+    margin-top: -10px;
+    font-weight: 300;
+}
+
+.logout-btn {
+    background-color: rgb(148, 5, 5);
+    padding: 10px;
+    margin: 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+.logout-btn:hover {
+    font-size: 1.1rem;
+    transition: 0.4s ease;
+}
+#image {
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+
+/* style for blog ejs and myblog ejs*/ 
+
+.blog-cont {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.blog-image {
+    margin-bottom: -10px;
+}
+.blog-cont2 {
+    max-width: 70%;
+}
+.date-passage {
+    margin: 20px;
+    margin-top: 0;
+    padding: 10px;
+}
+.date-posted {
+    font-weight: 300;
+}
+
+.passage div p {
+  hyphens: none;           /* no hyphenation */
+  text-align: justify;     /*This will make every line go border to border*/
+}
+
+.date-passage {
+    box-sizing: border-box;
+}
+.author {
+    font-weight: 700;
+}
+.prof {
+    font-weight: 300;
+    margin-top: -15px;
+
+}
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
+.act-btn {
+    background-color: black;
+    padding: 5px;
+    color: white;
+    border-radius: 5px;
+
+}
+.actionbtn-cont {
+    display: flex;
+    place-content: space-between;
+    align-items: center;
+    max-width: 50%;
+    margin: 20px auto;
+    box-sizing: border-box;
+}
+.action-btns2 {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    justify-content: center;
+    padding-top: 10px;
+    margin-left: 20px;
+    box-sizing: border-box;
+
+    
+}
+.edit-btn > button, .delete-btn > form > button {
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 500;
+    border: none;
+    background-color: #dcdbdb;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.edit-btn > button:hover, .delete-btn > form > button:hover {
+    background-color: #b3b2b2;
+    transition: 0.3s ease;
+    font-size: 1.1rem;
+}
+
+
+@media (max-width: 480px) {
+    .blog-cont2 {
+        max-width: 100%;
+    }
+    .blog-heading {
+        font-size: 1.5rem;
+        margin: 0;
+    }
+    .blog-subhead{
+        font-size: 1.1rem;
+        margin: 0;
+        margin-top: 5px;
+    }
+    .date-posted {
+        font-size: 0.8rem;
+    }
+    .actionbtn-cont {
+        max-width: 100%;
+    }
+    .edit-btn > button, .delete-btn > form > button, .logout-btn {
+        padding: 8px;
+        font-size: 0.7rem;
+
+    }
+    .actionbtn-cont {
+        flex-direction: column;
+    }
+    .action-btns1 {
+        flex-direction: column;
+        align-items: center;
+    }
+    .action-btns2 {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .actionbtn-cont {
+        max-width: 70%;
+    }  
+}
+
+@media (max-width: 1200px) {
+    .blog-cont2 {
+        max-width: 100%;
+    }   
+}
+
+
+/* sample ejs  */ 
+.containered {
+  display: flex;
+  justify-content: space-between; /* spacing between boxes */
+  flex-wrap: wrap; /* wrap to next row if screen is small */
+}
+
+.boxed {
+  flex: 1 1 30%;   /* flexible: min 30% width */
+  height: 200px;
+  margin: 10px;
+  background: lightgreen;
+}
+

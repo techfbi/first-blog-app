@@ -1,0 +1,43 @@
+</div>
+<%- include("partials/header") %>
+
+<div class="blog-cont">
+   <div class="blog-cont2">
+    <% if (blogImage) { %>
+        <div class="blog-image">
+            <img src="<%= blogImage %>" alt="blog image" style=" width: 100%; max-height: 500px; object-fit: cover; object-position: center 70%;"/>
+        </div>
+    <% } %>  
+        <div class="date-passage">
+            <p class="date-posted">Date published: <%= datePosted %></p>
+            <div class ="passage">
+                <div>
+                    <h1 class="blog-heading"><%= blogHeading %></h1>
+                    <h3 class="blog-subhead"> <%= blogSubHead %></h3>
+                    <p><%= blogBody %></p>
+                    <% extraBodies.forEach(function(currentParagraph) { //JavaScript method that loops through every item in the extraBodies array. And the callback function that runs for each item in the array. i.e currentParagraph: the current item in the array %> 
+                        <p><%= currentParagraph %></p>
+                    <% }); %>
+                    
+                    <p class="author"><i><%= author %></i></p>
+                    <p class="prof"><i>Author</i></p>
+                </div>    
+            </div>
+        </div>
+    </div>
+</div>
+<hr class="hr" style="border: 1px solid rgba(151, 150, 150, 0.52); width: 80%; margin: 20px auto;">
+<div class="actionbtn-cont">
+    <div class="action-btns2">
+        <div class="edit-btn" ><button type="button" onclick="window.location.href='/edit/<%= id %>'">Edit Post</button></div>
+        <div class="delete-btn"><form action="/delete/<%= id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
+            <button type="submit">Delete Post</button>
+        </form></div>
+    </div>
+    <div class="action-btns1">
+        <button class="logout-btn" type="button" onclick="window.location.href='/logout'">Logout</button>
+    </div>
+
+</div>
+
+<%- include("partials/footer") %>

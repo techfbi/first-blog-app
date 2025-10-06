@@ -1,0 +1,36 @@
+</div>
+<%- include("partials/header") %>
+<div class="login-container">
+    <h1>Login</h1>
+    <p style="font-weight: 300;">Hi, Welcome back 👋</p>
+    <% if (access === "incorrect") { %>
+        <p class="wrong">Incorrect email or password. Try again</p>
+    <% } %>
+
+    <div class="google-btn">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" alt="Google" width="18" style="margin-right:8px;">
+      Login with Google
+    </div>
+
+    <div class="divider">or Login with Email</div>
+
+    <form action="/login" method="POST">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="E.g. johndoe@email.com" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+      <div class="options">
+        <label><input type="checkbox" name="remember"> Remember Me</label>
+        <a href="#">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+
+    <div class="register">
+      Not registered yet? <a href="/register">Create an account ↗</a>
+    </div>
+</div>
+<%- include("partials/footer") %>
