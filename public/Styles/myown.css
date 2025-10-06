@@ -329,7 +329,7 @@ label {
     width: 70px;
 }
 .add-btn:hover {
-    transition: 0.3s ease;
+    transition: 0.1s ease;
     background-color: rgb(44, 39, 39);
     font-size: 1.1rem;
 

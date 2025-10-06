@@ -18,8 +18,8 @@
         <P class="pg"><i>To add more paragraph, click the button below</i></P>
         <button type="button" class="add-btn">Add</button>
 
-        <label for="image">Upload Blog Image: 
-            <span id="note" style="color: blue; font-weight: 300; font-size: 0.9rem;"><i>File must not exceed 2MB</i></span>
+        <label for="image">Upload Blog Image (landscape only): 
+            <span id="note" style="color: blue; font-weight: 300; font-size: 0.9rem;"><i>File must not exceed 2MB! </i></span> <span id="msg" style="color: red; font-weight: 300; font-size: 0.9rem; font-style: italic;"></span>
             <span id="file-error" style="color: red; display: none; font-weight: 300; font-size: 0.9rem;"><i>File too large! Please upload a file under 2MB.</i></span>
         </label>
         <input type="file" id="image" name="image" accept="image/*"> 
@@ -80,6 +80,25 @@
                     this.value = ""; // Reset the file input
                 } else {
                     errorMsg.hide(); // Hide error if valid
+                }
+            });
+
+            // FOR LANDSCAPE IMAGE ONLY
+            $("#image").on("change", function () {
+                const file = this.files[0];
+                const msg = $("#msg");
+                if (file) {
+                    const img = new Image();
+                    img.src = URL.createObjectURL(file);
+                    img.onload = function () {
+                        if (img.width <= img.height) { // Check if width is less than or equal to height
+                            msg.text(" landscape img only.").show();
+                            $("#note").hide(); // Hide the note <span>
+                            $("#image").val(""); // Reset the file input
+                        } else {
+                            msg.hide(); // Hide error if valid
+                        }
+                    };
                 }
             });
        </script>
