@@ -4,6 +4,9 @@ import session from 'express-session'; // For managing user sessions (after npm 
 import multer from "multer"; // For handling multipart/form-data, which is primarily used for uploading files. (after npm install multer)
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+// The two import below was added for security purpose, because it caused some issues with loading of css and images ---tagging it as malware site
+import helmet from "helmet"; // For securing HTTP headers (after npm install helmet)
+import cors from "cors"; // For enabling CORS (after npm install cors) CORS = Cross-Origin Resource Sharing
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -21,6 +24,8 @@ app.use(session({   //express-session
   resave: false,
   saveUninitialized: true
 }));
+app.use(helmet()); //helmet for security purpose after importing and installing it
+app.use(cors()); //cors for security purpose after importing and installing it
 
 // middleware to define activePage for all routes so i can use it in header.ejs to highlight active link
 app.use((req, res, next) => {
@@ -40,8 +45,14 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ 
   storage,
-  //limits: { fileSize: 2 * 1024 * 1024 } // 2MB file size limit
- });
+  limits: { fileSize: 2 * 1024 * 1024 }, // 2MB file size limit
+  fileFilter(req, file, cb) { // file type filter
+    if (!file.mimetype.startsWith("image/")) {
+      return cb(new Error("Only image uploads are allowed"));
+    }
+    cb(null, true);
+  }
+});
 
 
 
