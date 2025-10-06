@@ -20,7 +20,7 @@
                 </div>
                 <div class="head">
                     <div><a class="<%= activePage === 'home' ? 'active' : '' %>" href="/">Home</a> </div> <!--operator to check if the current page is home, if true add active class else add empty string-->
-                    <div><a class="<%= activePage === 'login-page' && 'create-blog' && 'create-blogs' && 'login-pages' ? 'active' : '' %>" href="/create-blog">Create-Blog</a></div> <!--operator to check if the current page is create-blog, if true add active class else add empty string-->
+                    <div><a class="<%= activePage === 'login-page' && 'create-blog' ? 'active' : '' %>" href="/create-blog">Create-Blog</a></div> <!--operator to check if the current page is create-blog, if true add active class else add empty string-->
                     <div><a class="<%= activePage === 'blogs' ? 'active' : '' %>" href="/blogs">Blogs</a></div>  <!--operator to check if the current page is blogs, if true add active class else add empty string-->
                 </div>
             </div>

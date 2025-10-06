@@ -80,7 +80,6 @@ function checkAuth(req, res, next) { //Middleware to check login
 app.get("/", (req, res) => {
   res.locals.activePage = "home"; // set activePage for this route
 
-
     res.render("index.ejs", {
       posts: posts, // Pass the posts array to the EJS template
     }); 
@@ -132,10 +131,8 @@ which is inside the "app.post("/login"..." */
 
 app.post("/login",emailAndPass, (req, res) => { //here the emailandpass middleware is added, instead of using it globally
   if (userIsAuthorized) {
-    res.locals.activePage = "create-blogs"; // set activePage for this route
     res.redirect("/create-blog");
   } else {
-    res.locals.activePage = "login-pages"; // set activePage for this route
     res.render("login.ejs", { access: "incorrect" });
   }
 });
