@@ -17,11 +17,6 @@ let posts = []; // defined first in create post route below and also called in t
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({   //express-session
-  secret: 'Oluwafemi',
-  resave: false,
-  saveUninitialized: true
-}));
 
 
 // middleware to define activePage for all routes so i can use it in header.ejs to highlight active link
@@ -51,7 +46,12 @@ const upload = multer({
   }
 });
 
-
+app.use(session({   //express-session
+  secret: 'Oluwafemi',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 30 * 60 * 1000 } // session expires after 30 minutes of inactivity
+}));
 
 function emailAndPass(req, res, next) {
   const email = req.body["email"];
@@ -67,8 +67,8 @@ function emailAndPass(req, res, next) {
 }
 
 
-function checkAuth(req, res, next) { //Middleware to check login
-  if (userIsAuthorized) {
+function checkAuth(req, res, next) { //Middleware to check login and detect expired sessions and redirect users back to login:
+  if (req.session.userIsAuthorized) { // Check if user is logged in for session timeout purpose
     next();
   } else {
     res.redirect("/login-page");
@@ -131,6 +131,8 @@ which is inside the "app.post("/login"..." */
 
 app.post("/login",emailAndPass, (req, res) => { //here the emailandpass middleware is added, instead of using it globally
   if (userIsAuthorized) {
+    req.session.userIsAuthorized = true; // Set session variable upon successful login for timeout purpose
+    console.log("User logged in successfully");
     res.redirect("/create-blog");
   } else {
     res.render("login.ejs", { access: "incorrect" });
