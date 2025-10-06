@@ -9,8 +9,9 @@ It also includes responsive layouts, secure image handling, and admin login acce
 3. View each post in detail
 4. Landscape blog image upload
 5. Login system for post creation
-6. Responsive UI for mobile and desktop
-7. Secure upload validation (file size & type)
+6. Automatic session expiration (for security, users re-login after 30mins inactivity)
+7. Responsive UI for mobile and desktop
+8. Secure upload validation (file size & type)
 
 ### Tech Stack
 * Backend === Node.js, Express.js
