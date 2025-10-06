@@ -5,8 +5,6 @@ import multer from "multer"; // For handling multipart/form-data, which is prima
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 // The two import below was added for security purpose, because it caused some issues with loading of css and images ---tagging it as malware site
-import helmet from "helmet"; // For securing HTTP headers (after npm install helmet)
-import cors from "cors"; // For enabling CORS (after npm install cors) CORS = Cross-Origin Resource Sharing
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -24,8 +22,7 @@ app.use(session({   //express-session
   resave: false,
   saveUninitialized: true
 }));
-app.use(helmet()); //helmet for security purpose after importing and installing it
-app.use(cors()); //cors for security purpose after importing and installing it
+
 
 // middleware to define activePage for all routes so i can use it in header.ejs to highlight active link
 app.use((req, res, next) => {
@@ -135,14 +132,17 @@ which is inside the "app.post("/login"..." */
 
 app.post("/login",emailAndPass, (req, res) => { //here the emailandpass middleware is added, instead of using it globally
   if (userIsAuthorized) {
+    res.locals.activePage = "create-blogs"; // set activePage for this route
     res.redirect("/create-blog");
   } else {
+    res.locals.activePage = "login-pages"; // set activePage for this route
     res.render("login.ejs", { access: "incorrect" });
   }
 });
 
 
 app.post("/myblog", upload.single("image"), (req,res) => { //Multer Middleware; upload.single("image") is used to handle single file upload with the field name "image". the field name must match the name attribute in the form input. 
+  res.locals.activePage = "blogs"; // set activePage for this route
     
     const today = new Date();
     const dateStamp = today.toLocaleDateString("en-US", {
