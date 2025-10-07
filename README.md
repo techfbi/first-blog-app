@@ -12,14 +12,15 @@ It also includes responsive layouts, secure image handling, and admin login acce
 6. Automatic session expiration (for security, users re-login after 30mins inactivity)
 7. Responsive UI for mobile and desktop
 8. Secure upload validation (file size & type)
-9. NOTE: The remember me, forgot password, and google sign in are not functional at the moment
+9. Maximum of 3 posts displayed on the homepage because theres no database yet
+10. NOTE: The remember me, forgot password, and google sign in are not functional at the moment
 
 ### Tech Stack
 * Backend === Node.js, Express.js
 * Frontend === EJS Templates, HTML, CSS
 * File Uploads === Multer
 * Sessions === Express-session
-* Deployment === render and railway (from Github)
+* Deployment === render and railway (from Github) Note: Railway uses a different time zone (UTC) from my local time zone (WAT), so the timestamps may differ.
 * Check the about session for the link to the web app
 
 ### Login Access
