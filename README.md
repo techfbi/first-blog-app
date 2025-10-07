@@ -12,6 +12,7 @@ It also includes responsive layouts, secure image handling, and admin login acce
 6. Automatic session expiration (for security, users re-login after 30mins inactivity)
 7. Responsive UI for mobile and desktop
 8. Secure upload validation (file size & type)
+9. NOTE: The remember me, forgot password, and google sign in are not functional at the moment
 
 ### Tech Stack
 * Backend === Node.js, Express.js
@@ -55,6 +56,7 @@ The general default admin login credentials (for creating and editing posts):
 * Add comment system
 * Integrate Cloudinary for permanent image hosting
 * Add dark mode toggle
+* Add functionalities to the; Forgot password link, remember me checkbox, and the google sign in button at the login page
 
 ### Contributing
 * Pull requests are welcome!
